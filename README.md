@@ -6,8 +6,8 @@
 
 
 **🔗 Live Dashboard Demo:** `https://leoneldurana.github.io/MANGLAR-TUMBES-/`
-**🔗 Pitch Deck:** https://acesse.one/pitch-deck-manglar-de-tumbes
-**🔗 Video Demo:** *pending — add before final submission*
+**🔗 Pitch Deck:** 
+**🔗 Video Demo:** 
 
 ---
 
