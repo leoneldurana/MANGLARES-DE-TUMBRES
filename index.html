@@ -1,1 +1,397 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LACNet Protocol Dashboard - Blue-Carbon</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b1120;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Efecto de cristal para los paneles */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Barra de scroll personalizada para el terminal */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(16, 185, 129, 0.5);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden selection:bg-emerald-500 selection:text-white">
+
+    <!-- SIDEBAR LADO IZQUIERDO -->
+    <aside class="w-64 bg-slate-900 border-r border-emerald-900/30 flex flex-col justify-between hidden md:flex z-20 shadow-2xl">
+        <div>
+            <div class="h-20 flex items-center px-6 border-b border-emerald-900/30">
+                <i class="fa-brands fa-hive text-2xl text-emerald-400 mr-3"></i>
+                <h1 class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-200 tracking-tight">Blue-Carbon TTF</h1>
+            </div>
+            <nav class="p-4 space-y-2">
+                <a href="#" class="flex items-center px-4 py-3 bg-emerald-900/20 text-emerald-400 rounded-lg border border-emerald-500/20 transition-all">
+                    <i class="fa-solid fa-chart-pie w-6"></i>
+                    <span class="font-medium text-sm">Protocol Metrics</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-all">
+                    <i class="fa-solid fa-earth-americas w-6"></i>
+                    <span class="font-medium text-sm">Jurisdictions</span>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-all">
+                    <i class="fa-solid fa-file-contract w-6"></i>
+                    <span class="font-medium text-sm">Smart Contracts</span>
+                </a>
+            </nav>
+        </div>
+        <div class="p-6 border-t border-emerald-900/30 bg-slate-900/50">
+            <div class="flex items-center justify-between text-xs font-mono text-emerald-400/80 mb-2">
+                <span>NODO LACNET</span>
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+            </div>
+            <p class="text-[10px] text-slate-500 font-mono break-all">ID: 0x8a9B4c...F12e</p>
+        </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto relative bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+        <!-- Overlay oscuro -->
+        <div class="absolute inset-0 bg-slate-950/80 pointer-events-none z-0"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+        <!-- HEADER -->
+        <header class="h-20 flex items-center justify-between px-8 border-b border-emerald-900/30 bg-slate-900/40 backdrop-blur-md relative z-10">
+            <div>
+                <h2 class="text-xl font-bold text-white">Multijurisdictional Architecture</h2>
+                <p class="text-xs text-slate-400">Manglar Tumbes - Piura Corridor</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs font-mono text-emerald-400">BaseRelayRecipient: ACTIVE</span>
+                <button class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-lg shadow-emerald-500/20">
+                    Connect Web3
+                </button>
+            </div>
+        </header>
+
+        <!-- DASHBOARD GRID -->
+        <div class="p-8 grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
+
+            <!-- FILA 1: KPIs GLOBALES (Prueba de concepto) -->
+            <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="glass-card p-5">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Manglar Restaurado</p>
+                    <div class="flex items-end space-x-2 mt-2">
+                        <span class="text-3xl font-bold text-white" id="stat-hectares">40.0</span>
+                        <span class="text-sm text-emerald-400 mb-1">Ha</span>
+                    </div>
+                </div>
+                <div class="glass-card p-5 relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-emerald-500/20 blur-xl rounded-full"></div>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total tCO2eq Emitidos</p>
+                    <div class="flex items-end space-x-2 mt-2 relative z-10">
+                        <span class="text-3xl font-bold text-emerald-400" id="stat-tokens">860</span>
+                        <span class="text-sm text-slate-300 mb-1">TTF</span>
+                    </div>
+                </div>
+                <div class="glass-card p-5">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Cooperativas Involucradas</p>
+                    <div class="flex items-end space-x-2 mt-2">
+                        <span class="text-3xl font-bold text-white">9</span>
+                        <span class="text-sm text-blue-400 mb-1">Activas</span>
+                    </div>
+                </div>
+                <div class="glass-card p-5">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Aumento de Captura</p>
+                    <div class="flex items-end space-x-2 mt-2">
+                        <span class="text-3xl font-bold text-orange-400">+22%</span>
+                        <span class="text-sm text-slate-300 mb-1">Moluscos</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA IZQUIERDA: ORÁCULO Y MINTING -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Panel de Emisión -->
+                <div class="glass-card p-6 border-t-4 border-t-emerald-500">
+                    <h3 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-microchip text-emerald-400 mr-2"></i>Oráculo MRV (Emisión)</h3>
+                    <p class="text-xs text-slate-400 mb-5 leading-relaxed">Simula la lectura de drones y la emisión TTF adaptada a la jurisdicción seleccionada.</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Jurisdicción Regulatoria</label>
+                            <select id="input-country" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+                                <option value="PER">Perú (MINAM Framework)</option>
+                                <option value="ECU">Ecuador (MAE Framework)</option>
+                                <option value="COL">Colombia (MADS Framework)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 mb-1">Hectáreas Validadas (Oráculo)</label>
+                            <input type="number" id="input-ha" placeholder="Ej. 10" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-emerald-500 transition-colors">
+                        </div>
+                        <button onclick="triggerMRV()" class="w-full py-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 font-bold rounded-lg transition-all flex justify-center items-center">
+                            <i class="fa-solid fa-bolt mr-2"></i> Ejecutar Smart Contract
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Distribución de Ingresos (Tokenomics) -->
+                <div class="glass-card p-6">
+                    <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Revenue Distribution</h3>
+                    <div class="space-y-4">
+                        <!-- Comunidades -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300">Comunidades Costeras (55%)</span>
+                                <span class="font-mono text-emerald-400" id="dist-comm">473 tCO2</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 55%"></div>
+                            </div>
+                        </div>
+                        <!-- Tecnología -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300">Desarrollo Tech/Plataforma (20%)</span>
+                                <span class="font-mono text-blue-400" id="dist-tech">172 tCO2</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                <div class="bg-blue-500 h-1.5 rounded-full" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <!-- MRV -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300">Verificación MRV (15%)</span>
+                                <span class="font-mono text-purple-400" id="dist-mrv">129 tCO2</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                <div class="bg-purple-500 h-1.5 rounded-full" style="width: 15%"></div>
+                            </div>
+                        </div>
+                        <!-- Viveros -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-300">Re-inversión Viveros (10%)</span>
+                                <span class="font-mono text-orange-400" id="dist-nurs">86 tCO2</span>
+                            </div>
+                            <div class="w-full bg-slate-800 rounded-full h-1.5">
+                                <div class="bg-orange-500 h-1.5 rounded-full" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA CENTRAL Y DERECHA: ECONOMÍA CIRCULAR Y TERMINAL -->
+            <div class="lg:col-span-2 space-y-6 flex flex-col">
+                
+                <!-- Economía Circular Costera (3R) -->
+                <div class="glass-card p-6 flex-1">
+                    <h3 class="text-lg font-bold text-white mb-1"><i class="fa-solid fa-recycle text-emerald-400 mr-2"></i>Marco de Economía Circular (3R)</h3>
+                    <p class="text-xs text-slate-400 mb-5 leading-relaxed">Ejecuta funciones del contrato para canalizar el valor de los tokens hacia acciones de impacto.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Reduce -->
+                        <div class="bg-slate-900/50 border border-slate-700/50 rounded-xl p-4 hover:border-emerald-500/30 transition-all group">
+                            <div class="w-10 h-10 bg-rose-500/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-rose-500/20 transition-all">
+                                <i class="fa-solid fa-fire text-rose-400"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1">REDUCIR (Offset)</h4>
+                            <p class="text-[10px] text-slate-400 mb-3">Retiro (Burn) de tokens para compensación corporativa. Reduce oferta.</p>
+                            <button onclick="executeCircularAction('Reduce_Burn', 100)" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded text-white border border-slate-600">
+                                Quemar 100 tCO2eq
+                            </button>
+                        </div>
+                        
+                        <!-- Reuse -->
+                        <div class="bg-slate-900/50 border border-slate-700/50 rounded-xl p-4 hover:border-emerald-500/30 transition-all group">
+                            <div class="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-orange-500/20 transition-all">
+                                <i class="fa-solid fa-seedling text-orange-400"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1">REUSAR (Viveros)</h4>
+                            <p class="text-[10px] text-slate-400 mb-3">Asignar liquidez para convertir residuos de poda en abono de manglar.</p>
+                            <button onclick="executeCircularAction('Reuse_Nursery', 50)" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded text-white border border-slate-600">
+                                Asignar 50 tCO2eq
+                            </button>
+                        </div>
+
+                        <!-- Recycle -->
+                        <div class="bg-slate-900/50 border border-slate-700/50 rounded-xl p-4 hover:border-emerald-500/30 transition-all group">
+                            <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-blue-500/20 transition-all">
+                                <i class="fa-solid fa-fish-fins text-blue-400"></i>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1">RECICLAR (Co-Beneficios)</h4>
+                            <p class="text-[10px] text-slate-400 mb-3">Activar derechos de ecoturismo y cuotas de pesca para la cooperativa.</p>
+                            <button onclick="executeCircularAction('Recycle_Access', 75)" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold rounded text-white border border-slate-600">
+                                Activar (75 tCO2eq)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live LACNet Terminal -->
+                <div class="glass-card flex-1 flex flex-col overflow-hidden bg-[#0f172a]">
+                    <div class="px-4 py-2 bg-slate-900/80 border-b border-slate-800 flex justify-between items-center">
+                        <span class="text-xs font-mono text-slate-400">LACNet_Terminal_Log // IPFS_Synced</span>
+                        <div class="flex space-x-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
+                            <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-1 overflow-y-auto font-mono text-[11px] text-slate-300 space-y-2 h-48" id="terminal-log">
+                        <div class="text-slate-500">>> Initializing MangroveCarbonToken.sol...</div>
+                        <div class="text-emerald-400">>> Connection to LACNet Node established. Block height: 1459023</div>
+                        <div class="text-blue-400">>> TTF Framework loaded. BaseRelayRecipient active for gasless Tx.</div>
+                        <div><span class="text-slate-500">[SYSTEM]</span> Loaded initial state: 40 Ha verified, 860 tCO2eq circulating.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // ESTADO INICIAL (Basado en la Prueba de Concepto del documento)
+        let protocolState = {
+            hectares: 40.0,
+            tokens: 860,
+            // Distribución base según 860 tokens
+            funds: {
+                comm: 473, // 55%
+                tech: 172, // 20%
+                mrv: 129,  // 15%
+                nurs: 86   // 10%
+            }
+        };
+
+        const CONVERSION_RATE = 21.5; // Aproximado para simulación
+
+        function formatNum(num) {
+            return num.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+        }
+
+        function updateUI() {
+            document.getElementById('stat-hectares').innerText = formatNum(protocolState.hectares);
+            document.getElementById('stat-tokens').innerText = formatNum(protocolState.tokens);
+            
+            document.getElementById('dist-comm').innerText = formatNum(protocolState.funds.comm) + " tCO2";
+            document.getElementById('dist-tech').innerText = formatNum(protocolState.funds.tech) + " tCO2";
+            document.getElementById('dist-mrv').innerText = formatNum(protocolState.funds.mrv) + " tCO2";
+            document.getElementById('dist-nurs').innerText = formatNum(protocolState.funds.nurs) + " tCO2";
+        }
+
+        function logToTerminal(message, type = 'info') {
+            const terminal = document.getElementById('terminal-log');
+            const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+            
+            let colorClass = "text-slate-300";
+            if (type === 'success') colorClass = "text-emerald-400";
+            if (type === 'burn') colorClass = "text-rose-400";
+            if (type === 'action') colorClass = "text-cyan-400";
+
+            const logEntry = document.createElement('div');
+            logEntry.className = `${colorClass} animate-pulse`;
+            setTimeout(() => logEntry.classList.remove('animate-pulse'), 500);
+            
+            logEntry.innerHTML = `<span class="text-slate-500">[${time}]</span> ${message}`;
+            terminal.appendChild(logEntry);
+            terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
+        }
+
+        function triggerMRV() {
+            const inputVal = parseFloat(document.getElementById('input-ha').value);
+            const country = document.getElementById('input-country').value;
+            
+            if (isNaN(inputVal) || inputVal <= 0) {
+                logToTerminal("ERROR: Invalid hectare input from Drone Oracle.", "burn");
+                return;
+            }
+
+            // Cálculos
+            const generatedTokens = inputVal * CONVERSION_RATE;
+            
+            protocolState.hectares += inputVal;
+            protocolState.tokens += generatedTokens;
+            
+            // Distribución automática (Smart Contract logic)
+            protocolState.funds.comm += generatedTokens * 0.55;
+            protocolState.funds.tech += generatedTokens * 0.20;
+            protocolState.funds.mrv += generatedTokens * 0.15;
+            protocolState.funds.nurs += generatedTokens * 0.10;
+
+            document.getElementById('input-ha').value = ""; // Clear input
+
+            // Simular respuesta del contrato
+            const hash = "0x" + Math.random().toString(16).slice(2, 10);
+            const ipfsCid = "Qm" + Math.random().toString(36).slice(2, 10) + "xyz";
+
+            logToTerminal(`>> Oracle Data Received: ${inputVal} Ha verified in ${country} jurisdiction.`);
+            logToTerminal(`[IPFS] Drone imagery pinned. CID: ${ipfsCid}`);
+            logToTerminal(`>> TTF Minting Event: +${formatNum(generatedTokens)} tCO2eq generated. TxHash: ${hash}`, 'success');
+            logToTerminal(`>> Value Distributed: Communities(55%), Tech(20%), MRV(15%), Nursery(10%)`);
+
+            updateUI();
+        }
+
+        function executeCircularAction(actionType, cost) {
+            if (protocolState.tokens < cost) {
+                logToTerminal(`ERROR: Insufficient protocol liquidity for ${actionType}.`, "burn");
+                return;
+            }
+
+            // Restamos del supply total
+            protocolState.tokens -= cost;
+            
+            // Para la simulación, reducimos proporcionalmente los fondos para cuadrar la UI
+            protocolState.funds.comm -= cost * 0.55;
+            protocolState.funds.tech -= cost * 0.20;
+            protocolState.funds.mrv -= cost * 0.15;
+            protocolState.funds.nurs -= cost * 0.10;
+
+            const hash = "0x" + Math.random().toString(16).slice(2, 10);
+
+            if (actionType === 'Reduce_Burn') {
+                logToTerminal(`>> CORPORATE OFFSET: ${cost} tCO2eq permanently retired from supply. TxHash: ${hash}`, 'burn');
+            } else if (actionType === 'Reuse_Nursery') {
+                logToTerminal(`>> NURSERY INVESTMENT: Tokens locked to process pruning waste into propagule stock.`, 'action');
+            } else if (actionType === 'Recycle_Access') {
+                logToTerminal(`>> ECOTOURISM GRANTED: Access rights minted for cooperative governance.`, 'action');
+            }
+
+            updateUI();
+        }
+    </script>
+</body>
+</html>
